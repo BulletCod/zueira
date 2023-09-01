@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Pergunta</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
+        }
+
+        #question {
+            color: #ffffff;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        #options {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 18px;
+            text-align: center;
+            cursor: pointer;
+            background-color: #473333;
+            color:red;
+            border: none;
+            margin: 10px;
+            border-radius: 5px;
+        }
+
+        #noContainer {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+        }
+
+        #no, #yes {
+            transition: 0.2s;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="question">Professor vai dar aula de JS proximo semestre?</div>
+    <div id="options">
+        <div id="noContainer">
+            <a href="https://www.youtube.com/watch?v=skVg5FlVKS0"><button id="yes" class="button">Sim</button></a>
+            <button id="no" class="button">Não</button>
+        </div>
+    </div>
+
+    <script>
+        var noButton = document.getElementById("no");
+        var noContainer = document.getElementById("noContainer");
+
+        function moveNoButton() {
+            var containerWidth = (noContainer.offsetWidth - noButton.offsetWidth)*6;
+            var containerHeight = (noContainer.offsetHeight - noButton.offsetHeight)*6;
+
+            var newLeft = Math.random() * containerWidth;
+            var newTop = Math.random() * containerHeight;
+
+            newLeft = Math.max(newLeft, 0);
+            newLeft = Math.min(newLeft, containerWidth);
+            newTop = Math.max(newTop, 0);
+            newTop = Math.min(newTop, containerHeight);
+
+            noButton.style.transform = `translate(${newLeft}px, ${newTop}px)`;
+        }
+
+        noButton.addEventListener("mouseover", moveNoButton);
+
+        noButton.addEventListener("mouseleave", function () {
+            setTimeout(moveNoButton, 1000);
+        });
+    </script>
+</body>
+
+</html>
